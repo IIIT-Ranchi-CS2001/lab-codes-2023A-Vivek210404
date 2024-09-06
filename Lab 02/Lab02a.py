@@ -4,17 +4,16 @@ s2 = s1.swapcase()
 print(s2)
 
 # “Bharat”
-s3 = s1.split()
-print(s3[1])
+print(s1[5:])
+
 
 # “BharatBharatBharat”
-s4 = s3[1]*3
-print(s4)
+print(s1[5:]*3)
+
 
 # “Mera Bharat”
-s5 = "Mera " + s3[1]
-print(s5)
+s3 = s1.replace("Maha","Mera")
+print(s3)
 
 # “Mera Bharat Mahan”
-s6 = s5 + " Mahan"
-print(s6)
+print(s3+" Mahan")
