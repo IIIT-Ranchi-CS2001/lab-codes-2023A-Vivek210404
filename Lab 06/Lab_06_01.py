@@ -8,8 +8,8 @@ def my_zip(customer_names, customer_ids, shopping_points, strct=True):
         min_length = min(len(customer_names), len(customer_ids), len(shopping_points))
         return [(customer_names[i], customer_ids[i], shopping_points[i]) for i in range(min_length)]
 
-customer_names = ['Alice', 'Bob', 'Charlie']
-customer_ids = ['C001', 'C002']
+customer_names = ['A', 'B', 'C']
+customer_ids = ['01', '02']
 shopping_points = [120, 250, 90]
 
 try:

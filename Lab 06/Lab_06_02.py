@@ -19,8 +19,8 @@ def my_sort(data, key=0):
     
     return data
 
-customer_names = ['Alice', 'Bob', 'Charlie']
-customer_ids = ['C001', 'C002', 'C003']
+customer_names = ['A', 'B', 'C']
+customer_ids = ['01', '02', '03']
 shopping_points = [120, 250, 90]
 
 customer_data = my_zip(customer_names, customer_ids, shopping_points, strct=False)
