@@ -7,4 +7,5 @@ def my_max(iterable: list | tuple | set) -> int:
             max = i
     return max
 
+
 print(my_max({1, 2, 3, 4, 5}))

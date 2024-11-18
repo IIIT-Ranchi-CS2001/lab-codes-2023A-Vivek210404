@@ -4,6 +4,7 @@ def my_zip(*args: list, strct: bool = False) -> list:
         return None
     
     # get minimum length of iterables
+    
     n = min([len(iterable) for iterable in args])
     listoftuples = list(tuple(iterable[i] for iterable in args) for i in range(n))
     return listoftuples

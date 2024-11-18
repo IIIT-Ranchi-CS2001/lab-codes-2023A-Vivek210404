@@ -17,7 +17,6 @@ zippedlist = my_zip(customerName, customerId, shoppingPoints)
 print(zippedlist)
 
 
-
 def my_sort(zipped_list: list, key: int = 0) -> list:
     sorted_zipped_list = [t for t in zipped_list]  #deep copy
     for i in range(len(sorted_zipped_list)):
