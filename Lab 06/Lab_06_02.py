@@ -1,35 +1,31 @@
-def my_zip(customer_names, customer_ids, shopping_points, strct=True):
-    if strct:
-        if len(customer_names) == len(customer_ids) == len(shopping_points):
-            return [(customer_names[i], customer_ids[i], shopping_points[i]) for i in range(len(customer_names))]
-        else:
-            raise ValueError("All lists must have the same length when 'strct=True'.")
-    else:
-        min_length = min(len(customer_names), len(customer_ids), len(shopping_points))
-        return [(customer_names[i], customer_ids[i], shopping_points[i]) for i in range(min_length)]
+def my_zip(*args: list, strct: bool = False) -> list:
+    if(strct and False in [len(args[i]) == len(args[i+1]) for i in range(len(args) - 1)]):
+        print("ERROR: Unequal length of iterators")
+        return None
     
-    
-def my_sort(data, key=0):
-    n = len(data)
-    
-    for i in range(n):
-        for j in range(0, n-i-1):
-            if data[j][key] > data[j+1][key]:
-                data[j], data[j+1] = data[j+1], data[j]
-    
-    return data
+    # get minimum length of iterables
+    n = min([len(iterable) for iterable in args])
+    listoftuples = list(tuple(iterable[i] for iterable in args) for i in range(n))
+    return listoftuples
 
-customer_names = ['A', 'B', 'C']
-customer_ids = ['01', '02', '03']
-shopping_points = [120, 250, 90]
+customerName = ["ABC", "Vivek", "Shubham"]
+customerId = [1, 2, 3]
+shoppingPoints = ["Kolkata market", "Zudio"]
 
-customer_data = my_zip(customer_names, customer_ids, shopping_points, strct=False)
+zippedlist = my_zip(customerName, customerId, shoppingPoints)
 
-print("Sorted by customer name (key = 0):")
-print(my_sort(customer_data, key=0))
+print(zippedlist)
 
-print("\nSorted by customer ID (key = 1):")
-print(my_sort(customer_data, key=1))
 
-print("\nSorted by shopping points (key = 2):")
-print(my_sort(customer_data, key=2))
+
+def my_sort(zipped_list: list, key: int = 0) -> list:
+    sorted_zipped_list = [t for t in zipped_list]  #deep copy
+    for i in range(len(sorted_zipped_list)):
+        for j in range(i, len(sorted_zipped_list)):
+            if(sorted_zipped_list[i][key] > sorted_zipped_list[j][key]):
+                sorted_zipped_list[i], sorted_zipped_list[j] = sorted_zipped_list[j], sorted_zipped_list[i]
+
+    return sorted_zipped_list
+
+
+print(my_sort(zippedlist, 2))

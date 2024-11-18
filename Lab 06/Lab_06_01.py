@@ -1,22 +1,17 @@
-def my_zip(customer_names, customer_ids, shopping_points, strct=True):
-    if strct:
-        if len(customer_names) == len(customer_ids) == len(shopping_points):
-            return [(customer_names[i], customer_ids[i], shopping_points[i]) for i in range(len(customer_names))]
-        else:
-            raise ValueError("All lists must have the same length when 'strct=True'.")
-    else:
-        min_length = min(len(customer_names), len(customer_ids), len(shopping_points))
-        return [(customer_names[i], customer_ids[i], shopping_points[i]) for i in range(min_length)]
+def my_zip(*args: list, strct: bool = False) -> list:
+    if(strct and False in [len(args[i]) == len(args[i+1]) for i in range(len(args) - 1)]):
+        print("ERROR: Unequal length of iterators")
+        return None
+    
+    # get minimum length of iterables
+    n = min([len(iterable) for iterable in args])
+    listoftuples = list(tuple(iterable[i] for iterable in args) for i in range(n))
+    return listoftuples
 
-customer_names = ['A', 'B', 'C']
-customer_ids = ['01', '02']
-shopping_points = [120, 250, 90]
+customerName = ["ABC", "Vivek", "Shubham"]
+customerId = [1, 2, 3]
+shoppingPoints = ["Kolkata market", "Zudio"]
 
-try:
-    print("Strict zipping (strct=True):")
-    print(my_zip(customer_names, customer_ids, shopping_points, strct=True))
-except ValueError as e:
-    print(e)
+zippedlist = my_zip(customerName, customerId, shoppingPoints)
 
-print("\nNon-strict zipping (strct=False):")
-print(my_zip(customer_names, customer_ids, shopping_points, strct=False))
+print(zippedlist)
